@@ -1,0 +1,57 @@
+<html>
+  <head>
+
+  </head>
+  <body>
+    <!-- Add elements with class names for the cursor to hover over -->
+    
+    <iframe id="my-iframe" class="name" height="500" width="700" src="./index2.html" title="description"></iframe>
+
+    <script>
+         var classname = "";
+        // Listen for messages from the iframe
+        window.addEventListener('message', function(event) {
+            // Check if the message came from your iframe
+            if (event.source === document.getElementById('my-iframe').contentWindow) {
+                // Update the page with the classname
+                 classname = event.data;
+              
+                var x = document.createElement("INPUT");
+                x.setAttribute("type", "text");
+                x.setAttribute("value", "Hello Pritam !");
+        
+                document.getElementById('classname-display').innerHTML = classname;
+           
+                
+                
+            }
+        });
+        function Blue(){
+            if(classname==""){
+                alert("Please select a element")
+            }
+            window.frames['my-iframe'].contentWindow.document.querySelector(`.${classname}`).style.backgroundColor="blue";
+            document.getElementById('css-display').innerHTML = `.${classname}{
+                backgroundColor:"blue"
+            }`
+        }
+        function Green(){
+            if(classname==""){
+                alert("Please select a element")
+            }
+            window.frames['my-iframe'].contentWindow.document.querySelector(`.${classname}`).style.backgroundColor="Green";
+            document.getElementById('css-display').innerHTML = `.${classname}{
+                backgroundColor:"green"
+            }`
+        }
+    </script>
+    
+    <!-- Display the classname on the page -->
+    <p>Classname: <span id="classname-display"></span></p>
+    <div class="colorChanger">
+        <button onclick="Blue()">Change Background to blue</button>
+        <button onclick="Green()">Change Background to Green </button>
+    </div>
+    <p>Generated css : <span id="css-display"></span></p>
+</body>
+</html>
