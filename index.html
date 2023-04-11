@@ -29,6 +29,7 @@
         function Blue(){
             if(classname==""){
                 alert("Please select a element")
+                return
             }
             window.frames['my-iframe'].contentWindow.document.querySelector(`.${classname}`).style.backgroundColor="blue";
             document.getElementById('css-display').innerHTML = `.${classname}{
@@ -38,10 +39,26 @@
         function Green(){
             if(classname==""){
                 alert("Please select a element")
+                return
             }
             window.frames['my-iframe'].contentWindow.document.querySelector(`.${classname}`).style.backgroundColor="Green";
             document.getElementById('css-display').innerHTML = `.${classname}{
                 backgroundColor:"green"
+            }`
+        }
+        function Border(){
+         
+            if(classname==""){
+                alert("Please select a element")
+                document.getElementById("radius").value=""
+                return
+            }
+            var radius = 0;
+            radius = document.getElementById("radius").value;
+           
+            window.frames['my-iframe'].contentWindow.document.querySelector(`.${classname}`).style.borderRadius=`${radius}px`;
+            document.getElementById('css-display').innerHTML = `.${classname}{
+                borderRadius:${radius}
             }`
         }
     </script>
@@ -51,6 +68,7 @@
     <div class="colorChanger">
         <button onclick="Blue()">Change Background to blue</button>
         <button onclick="Green()">Change Background to Green </button>
+        Border Radius : <input type="text" onkeyup="Border()" id="radius"> px 
     </div>
     <p>Generated css : <span id="css-display"></span></p>
 </body>
